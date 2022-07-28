@@ -1,11 +1,15 @@
-import { Scanner } from './scanner.js'
+import Scanner from './scanner'
+import $ from 'jquery'
 
-var results = []
+$(document).ready(function() {
+  let app = new Scanner()
 
-(function() {
-  document.getElementById('btn').addEventListener('click', function(){
-    Scanner.detected(result => {
-      results.concat([result])
-    })
+  $('#btn').click(function() {
+    app.onActivation()
   })
-})()
+})
+
+// ;(function() {
+//   let scanner = new Scanner()
+//   document.getElementById('btn').addEventListener('click', function(){})
+// })()

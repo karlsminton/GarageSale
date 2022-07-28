@@ -1,34 +1,44 @@
-class Scanner {
+import Quagga from 'quagga'
+
+export default class Scanner
+{
+  _cameraEnabled = false;
+
+  _config = {}
 
   constructor()
   {
-    Quagga.init(
-      {
-        inputStream: {
-          type: 'LiveStream',
-          constraints: {
-            width: 480,
-            height: 480,
-            facingMode: 'environment'
-          },
-        },
-        locator: {patchSize: 'medium', halfSample: true},
-        numOfWorkers: 4,
-        decoder: {readers: ['code_128_reader']},
-        locate: true,
+    this._config = {
+      inputStream : {
+        name : "Live",
+        type : "LiveStream",
+        target: document.getElementById('interactive')
       },
-      function (e) {
-        if (e) {
-          return console.log(e)
-        }
-        Quagga.start()
+      decoder : {
+        readers : ["code_128_reader"]
       }
-    )
-    Quagga.onDetected(this.detected)
+    }
   }
 
-  detected(result)
+  _callback(error)
   {
-    this.props.onDetected(result)
+    if (error) {
+      return console.log(err)
+    }
+    console.log("Initialization finished. Ready to start")
+    Quagga.start()
+    this._cameraEnabled = !this._cameraEnabled
   }
+
+  onActivation()
+  {
+    this._cameraEnabled ? Quagga.stop()
+      : Quagga.init(this._config, this._callback)
+
+    this._cameraEnabled = !this._cameraEnabled
+
+    console.log('_cameraEnabled ', this._cameraEnabled)
+  }
+
+
 }
