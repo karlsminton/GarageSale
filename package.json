@@ -2,7 +2,16 @@
   "name": "bunapp",
   "version": "0.0.3",
   "module": "src/index.js",
+  "scripts": {
+    "bun": "bun run src/index.ts",
+    "build": "npx webpack"
+  },
   "devDependencies": {
     "bun-types": "latest"
+  },
+  "dependencies": {
+    "quagga": "^0.12.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }
