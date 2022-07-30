@@ -1,9 +1,9 @@
 {
   "name": "bunapp",
   "version": "0.0.3",
-  "module": "app/index.js",
+  "module": "app/dist/index.js",
   "scripts": {
-    "bun": "bun run app/index.ts",
+    "bun": "bun run app/dist/index.ts",
     "build": "npx webpack"
   },
   "devDependencies": {

@@ -9,25 +9,25 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./app/scripts/src/index.js":
+/***/ "./app/src/scripts/index.js":
 /*!**********************************!*\
-  !*** ./app/scripts/src/index.js ***!
+  !*** ./app/src/scripts/index.js ***!
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scanner */ \"./app/scripts/src/scanner.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\njquery__WEBPACK_IMPORTED_MODULE_1___default()(document).ready(function() {\n  let app = new _scanner__WEBPACK_IMPORTED_MODULE_0__[\"default\"]()\n\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#btn').click(function() {\n    app.onActivation()\n  })\n})\n\n\n//# sourceURL=webpack://bunapp/./app/scripts/src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scanner */ \"./app/src/scripts/scanner.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\njquery__WEBPACK_IMPORTED_MODULE_1___default()(document).ready(function() {\n  let app = new _scanner__WEBPACK_IMPORTED_MODULE_0__[\"default\"]()\n\n  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#btn').click(function() {\n    app.onActivation()\n  })\n})\n\n\n//# sourceURL=webpack://bunapp/./app/src/scripts/index.js?");
 
 /***/ }),
 
-/***/ "./app/scripts/src/scanner.js":
+/***/ "./app/src/scripts/scanner.js":
 /*!************************************!*\
-  !*** ./app/scripts/src/scanner.js ***!
+  !*** ./app/src/scripts/scanner.js ***!
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Scanner)\n/* harmony export */ });\n/* harmony import */ var quagga__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quagga */ \"./node_modules/quagga/dist/quagga.min.js\");\n/* harmony import */ var quagga__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quagga__WEBPACK_IMPORTED_MODULE_0__);\n\n\nclass Scanner\n{\n  _cameraEnabled;\n\n  _config = {}\n\n  constructor()\n  {\n    this._config = {\n      inputStream : {\n        name : \"Live\",\n        type : \"LiveStream\",\n        target: document.getElementById('interactive')\n      },\n      decoder : {\n        readers : [\"code_128_reader\"]\n      }\n    }\n    this._cameraEnabled = false;\n  }\n\n  _callback(error)\n  {\n    if (error) {\n      return console.log('error initialising: ',err)\n    }\n    console.log('initialised successfully')\n    quagga__WEBPACK_IMPORTED_MODULE_0___default().start()\n  }\n\n  onActivation()\n  {\n    this._cameraEnabled ? quagga__WEBPACK_IMPORTED_MODULE_0___default().stop()\n      : quagga__WEBPACK_IMPORTED_MODULE_0___default().init(this._config, this._callback.bind(this))\n\n    this._cameraEnabled = this._cameraEnabled === true ? false : true\n\n    console.log('_cameraEnabled ', this._cameraEnabled)\n  }\n\n\n}\n\n\n//# sourceURL=webpack://bunapp/./app/scripts/src/scanner.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Scanner)\n/* harmony export */ });\n/* harmony import */ var quagga__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quagga */ \"./node_modules/quagga/dist/quagga.min.js\");\n/* harmony import */ var quagga__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quagga__WEBPACK_IMPORTED_MODULE_0__);\n\n\nclass Scanner\n{\n  _cameraEnabled;\n\n  _config = {}\n\n  constructor()\n  {\n    this._config = {\n      inputStream : {\n        name : \"Live\",\n        type : \"LiveStream\",\n        target: document.getElementById('interactive')\n      },\n      decoder : {\n        readers : [\"code_128_reader\"]\n      }\n    }\n    this._cameraEnabled = false;\n  }\n\n  _callback(error)\n  {\n    if (error) {\n      return console.log('error initialising: ',err)\n    }\n    console.log('initialised successfully')\n    quagga__WEBPACK_IMPORTED_MODULE_0___default().start()\n  }\n\n  onActivation()\n  {\n    this._cameraEnabled ? quagga__WEBPACK_IMPORTED_MODULE_0___default().stop()\n      : quagga__WEBPACK_IMPORTED_MODULE_0___default().init(this._config, this._callback.bind(this))\n\n    this._cameraEnabled = this._cameraEnabled === true ? false : true\n\n    console.log('_cameraEnabled ', this._cameraEnabled)\n  }\n\n\n}\n\n\n//# sourceURL=webpack://bunapp/./app/src/scripts/scanner.js?");
 
 /***/ }),
 
@@ -123,7 +123,7 @@ eval("!function(t,e){ true?module.exports=e(e.toString()).default:0}(this,functi
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./app/scripts/src/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./app/src/scripts/index.js");
 /******/ 	
 /******/ })()
 ;
