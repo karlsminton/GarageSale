@@ -8,8 +8,3 @@ $(document).ready(function() {
     app.onActivation()
   })
 })
-
-// ;(function() {
-//   let scanner = new Scanner()
-//   document.getElementById('btn').addEventListener('click', function(){})
-// })()

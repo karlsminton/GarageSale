@@ -2,7 +2,7 @@ import Quagga from 'quagga'
 
 export default class Scanner
 {
-  _cameraEnabled = false;
+  _cameraEnabled;
 
   _config = {}
 
@@ -18,24 +18,24 @@ export default class Scanner
         readers : ["code_128_reader"]
       }
     }
+    this._cameraEnabled = false;
   }
 
   _callback(error)
   {
     if (error) {
-      return console.log(err)
+      return console.log('error initialising: ',err)
     }
-    console.log("Initialization finished. Ready to start")
+    console.log('initialised successfully')
     Quagga.start()
-    this._cameraEnabled = !this._cameraEnabled
   }
 
   onActivation()
   {
     this._cameraEnabled ? Quagga.stop()
-      : Quagga.init(this._config, this._callback)
+      : Quagga.init(this._config, this._callback.bind(this))
 
-    this._cameraEnabled = !this._cameraEnabled
+    this._cameraEnabled = this._cameraEnabled === true ? false : true
 
     console.log('_cameraEnabled ', this._cameraEnabled)
   }
