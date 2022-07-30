@@ -30,7 +30,6 @@ export default class Scanner
           "ean_5_reader",
           "ean_2_reader",
           "ean_8_reader",
-          // "ean_13_reader",
           "code_39_reader",
           "code_39_vin_reader",
           "codabar_reader",
@@ -150,8 +149,11 @@ export default class Scanner
 
   _onDetected(result)
   {
-    // this.result = result
-    this.result = this.resultCollector.getResults()[0]
-    console.log('results ', this.result.codeResult)
+    this.result = this.resultCollector.getResults()[0].codeResult
+    if (this.result.code && this.result.format) {
+      console.log(`Code is ${this.result.code} in format ${this.result.format}`)
+      Quagga.stop()
+      this._cameraEnabled = this._cameraEnabled === true ? false : true
+    }
   }
 }

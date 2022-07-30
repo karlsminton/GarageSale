@@ -1,13 +1,8 @@
-## Getting Started
+## Scan And Sell Application
 
-### Cloning the repo
+Use QuaggaJS to scan barcodes, price products and give the user the ability to sell their products on a marketplace.
 
-```sh
-bun create blank ./NAME_HERE
-```
-
-### Execute a file (eg. src/index.js)
-    
-```sh
-bun run ./src/index.js
-```
+#### Concept
+* Get product code (EAN, UPC etc) using QuaggaJS
+* Use www.barcodelookup.com/api (or other API/s) to get the product
+* Get price suggestions for the product to assist the seller in pricing their 2nd hand goods
