@@ -10,7 +10,9 @@ export default class Scanner
 
   resultCollector
 
-  constructor()
+  parent
+
+  constructor(parent = null)
   {
     this._config = {
       inputStream : {
@@ -65,6 +67,12 @@ export default class Scanner
         return true
       }
     })
+
+    this.result = null
+
+    if (parent !== null) {
+      this.parent = parent
+    }
   }
 
   _callback(error)
@@ -84,7 +92,7 @@ export default class Scanner
     this._cameraEnabled ? Quagga.stop()
       : Quagga.init(this._config, this._callback.bind(this))
 
-    this._cameraEnabled = this._cameraEnabled === true ? false : true
+    this.toggleCamera()
 
     console.log('_cameraEnabled ', this._cameraEnabled)
   }
@@ -149,11 +157,24 @@ export default class Scanner
 
   _onDetected(result)
   {
+    console.log('_onDetected running')
     this.result = this.resultCollector.getResults()[0].codeResult
-    if (this.result.code && this.result.format) {
+
+    if (
+        this.result.code &&
+        this.result.format
+    ) {
       console.log(`Code is ${this.result.code} in format ${this.result.format}`)
       Quagga.stop()
-      this._cameraEnabled = this._cameraEnabled === true ? false : true
+      this.toggleCamera()
+
+      this.parent.setResult(this.result)
     }
+  }
+
+  toggleCamera()
+  {
+    this._cameraEnabled = this._cameraEnabled === true
+      ? false : true
   }
 }
