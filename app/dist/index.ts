@@ -1,29 +1,55 @@
 const { serve, file, resolveSync } = Bun
+import BarcodeController from './controllers/barcode.ts'
 
 const BASE_DIR = __dirname
 const BASE_URL = 'http://localhost:3000'
 
-let relativePathFromUrl = (url) => {
-  return url.replace(BASE_URL, '')
+let relativePathFromUrl = (url) => { return url.replace(BASE_URL, '') }
+let absolutePathFromRelative = (url) => { return BASE_DIR + url }
+
+const barcodeController = new BarcodeController()
+const controllers = {
+  "/scan": barcodeController
 }
 
-let absolutePathFromRelative = (url) => {
-  return BASE_DIR + url
-}
-
+/*
+ * TODO break this down into utility classes / functions
+ */
 serve({
   fetch(req: Request) {
-    var path = relativePathFromUrl(req.url)
-    if (path === '/') {
-      path = '/index.html'
+    let content
+    let path = relativePathFromUrl(req.url)
+
+    // TODO fix this absolute mess
+    let params = {}
+    let paramString = path.match(/(\?[a-zA-Z0-9\=\&]+)/g)
+    if (paramString !== null) {
+      paramString = paramString[0]
+      path = path.replace(paramString, '')
+      let urlSearchParams = new URLSearchParams(paramString)
+
+      for (const key of urlSearchParams.keys()) {
+        params[key] = urlSearchParams.get(key)
+      }
     }
 
-    var content = file(absolutePathFromRelative(path))
+    // Return controller responses
+    if (controllers[path]) {
+      return controllers[path].execute(req, params)
+    }
+    // Return static files
+    else {
+      if (path === '/') {
+        path = '/index.html'
+      }
 
-    var data = {
-      'url': req.url,
-      'path': path,
-      'content': '' + content
+      content = file(absolutePathFromRelative(path))
+
+      var data = {
+        'url': req.url,
+        'path': path,
+        'content': '' + content
+      }
     }
 
     return new Response(content)
