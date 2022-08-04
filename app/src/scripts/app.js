@@ -11,6 +11,7 @@ export default class App {
   {
     this.scanner = new Scanner(this)
     this.api_key = '5gtcwa2juhzu0g6qqoyw6bgq0sfcia'
+    this.updatePage.bind(this)
   }
 
   onActivation()
@@ -30,16 +31,26 @@ export default class App {
 
     console.log(query)
 
-    let response
+    let response = ''
+    this.queryData(query)
+      .then((products) => this.updatePage(products))
+  }
 
-    fetch(
-      query,
-      { method: "GET" }
-    ).then((res) => {
-      // res.json()
-      response = res
-    }).then((json) => console.log(json))
+  updatePage(json)
+  {
+    console.log(json)
+    const viewport = document.getElementById('interactive')
+    $('#interactive').find('video, canvas').remove()
 
-    console.log(response)
+    const img = document.createElement('img')
+    img.src = json.products[0].images[0]
+
+    viewport.appendChild(img)
+  }
+
+  async queryData(query)
+  {
+    let result = await fetch(query, { method: "GET" })
+    return await result.json()
   }
 }

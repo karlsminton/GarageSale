@@ -35,6 +35,13 @@ main, header {
   overflow: hidden;
 }
 
+#interactive > img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+  display: block;
+}
+
 #interactive > canvas {
   position: absolute;
   top: 0;
