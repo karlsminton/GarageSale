@@ -1,0 +1,32 @@
+#messages {
+  padding: 15px 0;
+  height: auto;
+  overflow: hidden;
+  transition: height 0.5s;
+}
+#messages > div:last-of-type {
+  margin-bottom: 0;
+}
+
+.message {
+  background: red;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.success {
+  background-color: #5db899;
+  color: #054630;
+}
+
+.info {
+  background-color: #047cc1;
+  color: #fff;
+}
+
+.error {
+  background-color: #f1cc81;
+  color: #775002;
+}

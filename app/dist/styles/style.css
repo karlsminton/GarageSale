@@ -2,6 +2,8 @@
 
 @import "./shutter.css";
 
+@import "./messages.css";
+
 * {
   margin: 0;
 }

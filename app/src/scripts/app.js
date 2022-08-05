@@ -30,12 +30,30 @@ export default class App {
 
     let response = ''
     this.queryData(query)
+      .then((res) => {
+        if (res.status !== 200) {
+          let error = new Error(`API returned a status of ${res.status}`)
+          error.response = res
+          throw error
+        }
+        res.json
+      })
       .then((products) => this.view.updatePage(products))
+      .catch((error) => {
+        this.view.handleApiError(error)
+      })
+  }
+
+  scannerReset()
+  {
+    alert('scanner reset yo')
+    const status = this.scanner.getCameraStatus()
+    this.view.scannerReset(status)
   }
 
   async queryData(query)
   {
     let result = await fetch(query, { method: "GET" })
-    return await result.json()
+    return await result
   }
 }
