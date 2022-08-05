@@ -7,9 +7,14 @@ export default class View
     this.updatePage.bind(this)
   }
 
-  scannerReset()
+  scannerReset(status)
   {
     $('#interactive').find('img').remove()
+    if (status) {
+      $('#shutter').addClass('shut')
+    } else {
+      $('#shutter').removeClass('shut')
+    }
   }
 
   updatePage(json)
@@ -24,9 +29,4 @@ export default class View
 
     viewport.appendChild(img)
   }
-
-  // addShutter()
-  // {
-  //   const viewport = document.getElementById('interactive')
-  // }
 }

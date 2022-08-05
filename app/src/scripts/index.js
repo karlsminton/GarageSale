@@ -4,7 +4,7 @@ import $ from 'jquery'
 $(document).ready(function() {
   let app = new App()
 
-  $('#btn').click(function() {
+  $('#shutter').click(function() {
     app.onActivation()
   })
 })

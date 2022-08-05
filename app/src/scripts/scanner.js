@@ -3,13 +3,9 @@ import Quagga from 'quagga'
 export default class Scanner
 {
   result
-
   _cameraEnabled
-
   _config = {}
-
   resultCollector
-
   parent
 
   constructor(parent = null)
@@ -91,7 +87,7 @@ export default class Scanner
     this._cameraEnabled ? Quagga.stop()
       : Quagga.init(this._config, this._callback.bind(this))
 
-    this.toggleCamera()
+    this.toggleCameraStatus()
   }
 
   _onProcessed(result)
@@ -105,49 +101,16 @@ export default class Scanner
         result.boxes.filter((box) => {
           return box !== result.box
         }).forEach((box) => {
-          Quagga.ImageDebug.drawPath(
-            box,
-            {
-              x: 0,
-              y: 1
-            },
-            drawingCtx,
-            {
-              color: 'green',
-              lineWidth: 2
-            }
-          )
+          Quagga.ImageDebug.drawPath(box,{x: 0,y: 1},drawingCtx,{color: 'green', lineWidth: 2})
         })
       }
 
       if (result.box) {
-        Quagga.ImageDebug.drawPath(
-          result.box,
-          {
-            x: 0,
-            y: 1
-          },
-          drawingCtx,
-          {
-            color: "#00F",
-            lineWidth: 2
-          }
-        )
+        Quagga.ImageDebug.drawPath(result.box,{x: 0,y: 1},drawingCtx,{color: "#00F",lineWidth: 2})
       }
 
       if (result.codeResult && result.codeResult.code) {
-        Quagga.ImageDebug.drawPath(
-          result.line,
-          {
-            x: 'x',
-            y: 'y'
-          },
-          drawingCtx,
-          {
-            color: 'red',
-            lineWidth: 3
-          }
-        )
+        Quagga.ImageDebug.drawPath(result.line,{x:'x',y:'y'},drawingCtx,{color: 'red',lineWidth: 3})
       }
     }
   }
@@ -161,14 +124,19 @@ export default class Scanner
         this.result.format
     ) {
       Quagga.stop()
-      this.toggleCamera()
+      this.toggleCameraStatus()
       this.parent.setResult(this.result)
     }
   }
 
-  toggleCamera()
+  toggleCameraStatus()
   {
     this._cameraEnabled = this._cameraEnabled === true
       ? false : true
+  }
+
+  getCameraStatus()
+  {
+    return this._cameraEnabled
   }
 }

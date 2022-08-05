@@ -17,7 +17,8 @@ export default class App {
   onActivation()
   {
     this.scanner.onActivation()
-    this.view.scannerReset()
+    const status = this.scanner.getCameraStatus()
+    this.view.scannerReset(status)
   }
 
   setResult(result)
