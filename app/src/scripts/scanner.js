@@ -74,7 +74,7 @@ export default class Scanner
   _callback(error)
   {
     if (error) {
-      return console.log('error initialising: ', err)
+      return console.log('error initialising: ', error)
     }
     Quagga.registerResultCollector(this.resultCollector)
     Quagga.start()
