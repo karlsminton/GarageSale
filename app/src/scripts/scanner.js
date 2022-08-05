@@ -78,10 +78,9 @@ export default class Scanner
   _callback(error)
   {
     if (error) {
-      return console.log('error initialising: ',err)
+      return console.log('error initialising: ', err)
     }
     Quagga.registerResultCollector(this.resultCollector)
-    console.log('initialised successfully')
     Quagga.start()
     Quagga.onProcessed(this._onProcessed)
     Quagga.onDetected(this._onDetected.bind(this))
@@ -93,8 +92,6 @@ export default class Scanner
       : Quagga.init(this._config, this._callback.bind(this))
 
     this.toggleCamera()
-
-    console.log('_cameraEnabled ', this._cameraEnabled)
   }
 
   _onProcessed(result)
@@ -157,17 +154,14 @@ export default class Scanner
 
   _onDetected(result)
   {
-    console.log('_onDetected running')
     this.result = this.resultCollector.getResults()[0].codeResult
 
     if (
         this.result.code &&
         this.result.format
     ) {
-      console.log(`Code is ${this.result.code} in format ${this.result.format}`)
       Quagga.stop()
       this.toggleCamera()
-
       this.parent.setResult(this.result)
     }
   }
