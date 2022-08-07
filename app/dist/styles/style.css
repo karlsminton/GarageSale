@@ -4,6 +4,10 @@
 
 @import "./messages.css";
 
+@import "./utils.css";
+
+@import "./new-product.css";
+
 * {
   margin: 0;
 }
@@ -12,12 +16,16 @@ html {
   font-family: 'Barlow', sans-serif;
 }
 
+ul, ol {
+  padding: 0 0 0 15px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .container {
