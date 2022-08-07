@@ -34,9 +34,8 @@ export default class Info
     return responseHtml += storesDataWrapper
   }
 
-  getRequestErrorHtml(errorMsg)
+  getMsgHtml(data)
   {
-    const onload = `(function() {console.log('message:', this)})`
-    return `<div onload="${onload}" class="message error">${errorMsg}</div>`
+    return `<div class="message ${data.type}">${data.msg}</div>`
   }
 }

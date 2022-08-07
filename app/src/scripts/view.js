@@ -29,6 +29,8 @@ export default class View
   {
     const viewport = document.getElementById('interactive')
 
+    this.displayMessage(200)
+
     $('#interactive').find('video, canvas, br').remove()
 
     const img = document.createElement('img')
@@ -58,10 +60,16 @@ export default class View
   {
     // Debug
     const response = error.response
+    const status = response.status ?? 404
     console.log('handleApiError response: ', response)
-    const code = this.messagesUtil.getMsgByHttpErrorCode(status)
-    const html = this.viewmodel.getRequestErrorHtml(code)
-    document.getElementById('messages').innerHTML = html
+    this.displayMessage(response.status)
     this.addResetButton()
+  }
+
+  displayMessage(status)
+  {
+    const msg = this.messagesUtil.getMsgByHttpCode(status)
+    const html = this.viewmodel.getMsgHtml(msg)
+    document.getElementById('messages').innerHTML = html
   }
 }
