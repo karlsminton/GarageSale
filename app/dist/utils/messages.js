@@ -14,6 +14,7 @@ export default class Messages
         msg = "Oops, we've exceeded the number of requests we can process. Please try again later."
         break;
       default:
+        console.log('Unexpected error code: ', code)
         msg = "An unknown error has occurred, please try again."
     }
     return msg

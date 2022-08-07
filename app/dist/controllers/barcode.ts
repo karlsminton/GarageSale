@@ -9,11 +9,11 @@ export default class BarcodeController
     let content = 'not assigned'
     const base = 'https://api.barcodelookup.com/v3/products'
 
-    const key = '5gtcwa2juhzu0g6qqoyw6bgq0sfcia'
+    const key = 'mtagr6y2cedk8b472b9u1ze7hrik1d'
     const barcode = params['barcode']
 
     const url = `${base}?barcode=${barcode}&formatted=y&key=${key}`
-    
+
     const opts = {
       method: "GET",
       headers: {

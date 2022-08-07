@@ -11,7 +11,6 @@ export default class View
     this.updatePage.bind(this)
     this.scannerReset.bind(this)
     this.addResetButton.bind(this)
-    // this.handleApiError.bind(this)
     this.messagesUtil = new Messages()
     this.viewmodel = new Info()
   }
@@ -28,34 +27,41 @@ export default class View
 
   updatePage(json)
   {
-    console.log(json)
     const viewport = document.getElementById('interactive')
 
     $('#interactive').find('video, canvas, br').remove()
 
     const img = document.createElement('img')
     img.src = json.products[0].images[0]
-
     viewport.appendChild(img)
     this.addResetButton()
+
+    const details = document.getElementById('details')
+    details.innerHTML = this.viewmodel.getProductDataHtml(json.products[0])
   }
 
   addResetButton()
   {
-    const btn = document.createElement('button')
-    btn.innerHTML = 'Retry?'
-    btn.addEventListener('click', function () {
-      app.scannerReset(false)
-    })
-
-    document.getElementById('main').appendChild(btn)
+    // TODO fix - adds multiple buttons after first go
+    if (!document.getElementById('retry')) {
+      const btn = document.createElement('button')
+      btn.id = 'retry'
+      btn.innerHTML = 'Retry?'
+      btn.addEventListener('click', function (){ app.scannerReset(false) })
+      document.getElementById('main').appendChild(btn)
+    } else {
+      $('#retry').removeClass('hidden')
+    }
   }
 
   handleApiError(error)
   {
+    // Debug
     const response = error.response
-    const code = this.messagesUtil.getMsgByHttpErrorCode(response.status)
+    console.log('handleApiError response: ', response)
+    const code = this.messagesUtil.getMsgByHttpErrorCode(status)
     const html = this.viewmodel.getRequestErrorHtml(code)
     document.getElementById('messages').innerHTML = html
+    this.addResetButton()
   }
 }

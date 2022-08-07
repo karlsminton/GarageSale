@@ -1,0 +1,18 @@
+#details > h2 {
+  margin-bottom: 20px;
+}
+
+#details > .desc {
+  margin: 20px 0;
+}
+
+#details #stores .content ul > li {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+#details #stores .heading {
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
