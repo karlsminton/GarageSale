@@ -13,7 +13,10 @@ export default class MessageManager
     if (MessageManager._instance) {
       return MessageManager._instance
     }
-    MessageManager._instance = this;
+    MessageManager._instance = this
+
+    // Observe messages and delete after x seconds
+    this.initialiseManager()
   }
 
   createMessage(msg, type)

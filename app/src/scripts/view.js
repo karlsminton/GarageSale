@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import Messages from '../../dist/utils/messages'
 import MessageManager from '../../dist/utils/messageManager'
 import Info from '../../dist/viewmodels/info'
 
@@ -71,7 +70,7 @@ export default class View
   displayMessage(status)
   {
     return this.messagesUtil.createMsgByHttpCode(status)
-    
+
     const msg = this.messagesUtil.createMsgByHttpCode(status)
     const html = this.viewmodel.getMsgHtml(msg)
     document.getElementById('messages').innerHTML = html
