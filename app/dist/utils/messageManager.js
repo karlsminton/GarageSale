@@ -60,14 +60,21 @@ export default class MessageManager
     const target = document.getElementById('messages')
 
     // callback could possibly be private method
-    const callback = (mutations, observer) => {
-      const messages = mutations.filter((mut) => {return mut.type === 'childList'})
+    const callback = (messages, observer) => {
       for (const msg of messages) {
         console.log('Observer logging of message', msg)
+        const nodes = msg.addedNodes
+        console.log('Node list ', nodes)
+
+        nodes.forEach((node) => {
+          setTimeout(function(){
+            $(node).hide()
+          }, 8000)
+        })
       }
     }
 
     const observer = new MutationObserver(callback)
-    observer(target, {})
+    observer.observe(target, {childList: true})
   }
 }
