@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import Messages from '../../dist/utils/messages'
+import MessageManager from '../../dist/utils/messageManager'
 import Info from '../../dist/viewmodels/info'
 
 export default class View
@@ -11,7 +12,8 @@ export default class View
     this.updatePage.bind(this)
     this.scannerReset.bind(this)
     this.addResetButton.bind(this)
-    this.messagesUtil = new Messages()
+    // this.messagesUtil = new Messages()
+    this.messagesUtil = new MessageManager()
     this.viewmodel = new Info()
   }
 
@@ -68,7 +70,9 @@ export default class View
 
   displayMessage(status)
   {
-    const msg = this.messagesUtil.getMsgByHttpCode(status)
+    return this.messagesUtil.createMsgByHttpCode(status)
+    
+    const msg = this.messagesUtil.createMsgByHttpCode(status)
     const html = this.viewmodel.getMsgHtml(msg)
     document.getElementById('messages').innerHTML = html
   }
