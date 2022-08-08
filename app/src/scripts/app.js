@@ -2,8 +2,8 @@ import Scanner from './scanner'
 import View from './view'
 import $ from 'jquery'
 
-export default class App {
-
+export default class App
+{
   scanner
 
   constructor()
@@ -479,7 +479,6 @@ export default class App {
   {
     const status = this.scanner.getCameraStatus()
     console.log('scanner status currently ', status)
-    // this.scanner.toggleCameraStatus()
     this.view.scannerReset(status)
     $('#retry').addClass('hidden')
   }
@@ -489,10 +488,5 @@ export default class App {
     // Just return json for testing - then re-enable the below code to debug live
     let result = await fetch(query, { method: "GET" })
     return await result
-  }
-
-  manageMessages()
-  {
-    alert('manage messages triggered')
   }
 }

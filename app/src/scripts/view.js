@@ -11,7 +11,6 @@ export default class View
     this.updatePage.bind(this)
     this.scannerReset.bind(this)
     this.addResetButton.bind(this)
-    // this.messagesUtil = new Messages()
     this.messagesUtil = new MessageManager()
     this.viewmodel = new Info()
   }
@@ -39,6 +38,7 @@ export default class View
     viewport.appendChild(img)
     this.addResetButton()
 
+    this.addSellButton()
     const details = document.getElementById('details')
     details.innerHTML = this.viewmodel.getProductDataHtml(json.products[0])
   }
@@ -57,12 +57,25 @@ export default class View
     }
   }
 
+  addSellButton()
+  {
+    // TODO fix - adds multiple buttons after first go
+    if (!document.getElementById('sell')) {
+      const btn = document.createElement('button')
+      btn.id = 'sell'
+      btn.innerHTML = 'Sell This Product'
+      btn.addEventListener('click', function (){
+        // something to initialise sale
+        alert('Sell Button Clicked')
+      })
+      document.getElementById('main').appendChild(btn)
+    }
+  }
+
   handleApiError(error)
   {
-    // Debug
     const response = error.response
     const status = response.status ?? 404
-    console.log('handleApiError response: ', response)
     this.displayMessage(response.status)
     this.addResetButton()
   }
@@ -70,9 +83,5 @@ export default class View
   displayMessage(status)
   {
     return this.messagesUtil.createMsgByHttpCode(status)
-
-    const msg = this.messagesUtil.createMsgByHttpCode(status)
-    const html = this.viewmodel.getMsgHtml(msg)
-    document.getElementById('messages').innerHTML = html
   }
 }
