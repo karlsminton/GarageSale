@@ -23,7 +23,7 @@ export default class BarcodeController
     }
 
     // Shows in "bun run" the full url to double check
-    console.log(url)
+    console.log('request url', url)
     return this.getJson(url, opts)
   }
 

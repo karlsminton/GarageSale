@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import MessageManager from '../../dist/utils/messageManager'
 import Info from '../../dist/viewmodels/info'
+import CookieManager from '../../dist/utils/cookieManager'
 
 export default class View
 {
@@ -13,6 +14,7 @@ export default class View
     this.addResetButton.bind(this)
     this.messagesUtil = new MessageManager()
     this.viewmodel = new Info()
+    this.cookieManager = new CookieManager()
   }
 
   scannerReset(status)
@@ -27,6 +29,9 @@ export default class View
 
   updatePage(json)
   {
+    json = JSON.parse(json)
+    this.cookieManager.setJsonToCookie('product', json)
+    console.log('debugging json.products doesn\'t exist error: ', json)
     const viewport = document.getElementById('interactive')
 
     this.displayMessage(200)
@@ -50,7 +55,7 @@ export default class View
       const btn = document.createElement('button')
       btn.id = 'retry'
       btn.innerHTML = 'Retry?'
-      btn.addEventListener('click', function (){ app.scannerReset(false) })
+      btn.addEventListener('click', function(){ app.scannerReset(false) })
       document.getElementById('main').appendChild(btn)
     } else {
       $('#retry').removeClass('hidden')
@@ -64,9 +69,9 @@ export default class View
       const btn = document.createElement('button')
       btn.id = 'sell'
       btn.innerHTML = 'Sell This Product'
-      btn.addEventListener('click', function (){
+      btn.addEventListener('click', function(){
         // something to initialise sale
-        alert('Sell Button Clicked')
+        window.location.hash = 'sell'
       })
       document.getElementById('main').appendChild(btn)
     }

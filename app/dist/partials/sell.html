@@ -1,0 +1,15 @@
+<div id="product">
+    <div id="product-image"><!-- Display Product Image --></div>
+    <div id="description"><!-- Display Product Description --></div>
+    <!-- Price Item For Sale -->
+    <form id="sell" action="/sell" method="POST">
+        <input type="text" name="price" placeholder="Price (in £)">
+        <textarea
+            name="seller-description"
+            rows="8"
+            cols="80"
+            placeholder="Describe the product. Include details about condition."
+        ></textarea>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+</div>

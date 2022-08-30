@@ -1,5 +1,6 @@
 const { serve, file, resolveSync } = Bun
 import BarcodeController from './controllers/barcode.ts'
+import SsrController from './controllers/ssr.ts'
 
 const BASE_DIR = __dirname
 const BASE_URL = 'http://localhost:3000'
@@ -8,8 +9,10 @@ let relativePathFromUrl = (url) => { return url.replace(BASE_URL, '') }
 let absolutePathFromRelative = (url) => { return BASE_DIR + url }
 
 const barcodeController = new BarcodeController()
+const ssrController = new SsrController()
 const controllers = {
-  "/scan": barcodeController
+  "/scan": barcodeController,
+  "/ssr": ssrController,
 }
 
 /*

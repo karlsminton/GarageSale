@@ -62,13 +62,11 @@ export default class MessageManager
     // callback could possibly be private method
     const callback = (messages, observer) => {
       for (const msg of messages) {
-        console.log('Observer logging of message', msg)
         const nodes = msg.addedNodes
-        console.log('Node list ', nodes)
 
         nodes.forEach((node) => {
-          setTimeout(function(){
-            $(node).hide()
+          setTimeout(() => {
+            $(node).fadeOut(800, () => { $(this).hide() })
           }, 8000)
         })
       }

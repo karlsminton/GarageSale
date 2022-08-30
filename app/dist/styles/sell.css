@@ -1,0 +1,7 @@
+#sell > * {
+  display: block;
+  margin-bottom: 15px;
+}
+#sell > input[type="text"], #sell > textarea  {
+  width: 100%;
+}

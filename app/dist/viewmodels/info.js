@@ -1,3 +1,7 @@
+/*
+ * TODO may retire this class
+ * not implementing the viewmodel in the way I plan to going forward
+ */
 export default class Info
 {
   #product
