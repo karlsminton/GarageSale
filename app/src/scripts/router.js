@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import App from './app'
+import IndexViewmodel from '../../dist/viewmodels/index'
 import SellViewmodel from '../../dist/viewmodels/sell'
+import BuyViewmodel from '../../dist/viewmodels/buy'
 
 export default class Router
 {
@@ -33,7 +35,9 @@ export default class Router
     observer.observe(document.getElementById('main'), {childList: true})
 
     this.#viewmodels = {
-      "sell": SellViewmodel
+      "index": IndexViewmodel,
+      "sell": SellViewmodel,
+      "buy": BuyViewmodel,
     }
   }
 
@@ -53,7 +57,7 @@ export default class Router
         document.getElementById('main').innerHTML = content
 
         // Implement viewmodels on page load
-        if (this.#viewmodels[slug] && slug != 'index') {
+        if (this.#viewmodels[slug]) {
           window.viewmodel = new this.#viewmodels[slug]
         } else {
           alert('viewmodel doesn\'t exist for this route')

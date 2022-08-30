@@ -10,6 +10,8 @@
 
 @import "./sell.css";
 
+@import "./listing.css";
+
 * {
   margin: 0;
 }
@@ -35,16 +37,22 @@ h1 {
   font-size: 3rem;
 }
 
-input[type="submit"], button {
+input[type="submit"], button, .btn {
   border-radius: 0;
   border: none;
   line-height: 50px;
   min-width: 200px;
   text-transform: uppercase;
   font-weight: 500;
+  /*
   background: rgb(77,174,254);
   background: linear-gradient(90deg, rgba(77,174,254,1) 0%, rgba(2,240,254,1) 100%);
   color: rgb(32, 91, 140);
+  */
+  background: rgb(32, 91, 140);
+  color: #fff;
+  display: block;
+  text-align: center;
 }
 
 .container {
