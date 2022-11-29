@@ -1,8 +1,9 @@
+import AbstractViewmodel from './abstract'
 /*
  * TODO may retire this class
  * not implementing the viewmodel in the way I plan to going forward
  */
-export default class Info
+export default class Info extends AbstractViewmodel
 {
   #product
 

@@ -2,7 +2,7 @@ import $ from 'jquery'
 import App from './app'
 import IndexViewmodel from '../../dist/viewmodels/index'
 import SellViewmodel from '../../dist/viewmodels/sell'
-import BuyViewmodel from '../../dist/viewmodels/buy'
+import ListViewmodel from '../../dist/viewmodels/list'
 
 export default class Router
 {
@@ -37,7 +37,7 @@ export default class Router
     this.#viewmodels = {
       "index": IndexViewmodel,
       "sell": SellViewmodel,
-      "buy": BuyViewmodel,
+      "list": ListViewmodel,
     }
   }
 
@@ -54,11 +54,15 @@ export default class Router
         }
         return res.text()
       }).then((content) => {
-        document.getElementById('main').innerHTML = content
+        // Reset html to blank
+        document.getElementById('main').innerHTML = ''
+        // Runs scripts included in html
+        $('#main').append(content)
 
         // Implement viewmodels on page load
         if (this.#viewmodels[slug]) {
           window.viewmodel = new this.#viewmodels[slug]
+          window.viewmodel.afterLoad()
         } else {
           alert('viewmodel doesn\'t exist for this route')
         }

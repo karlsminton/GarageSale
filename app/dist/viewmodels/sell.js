@@ -1,12 +1,14 @@
 import $ from 'jquery'
 import CookieManager from '../utils/cookieManager'
+import AbstractViewmodel from './abstract'
 
-export default class SellViewmodel
+export default class SellViewmodel extends AbstractViewmodel
 {
   #data
 
   constructor()
   {
+    super()
     const cookieManager = new CookieManager()
     // TODO this is going to get boring - need a cookie manager
     // const cookies = document.cookie.split(';')
